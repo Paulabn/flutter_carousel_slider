@@ -454,7 +454,10 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
 
     // If the viewportDimension is zero, cache the page
     // in case the viewport is resized to be non-zero.
-    _cachedPage = (viewportDimension == 0.0) ? page : null;
+    //_cachedPage = (viewportDimension == 0.0) ? page : null;
+
+    //Paul - try to cache the page anyway
+    _cachedPage = page;
 
     if (newPixels != oldPixels) {
       correctPixels(newPixels);
