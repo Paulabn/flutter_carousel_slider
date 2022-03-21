@@ -409,7 +409,7 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
       : _cp ?? getPageFromPixels(pixels.clamp(minScrollExtent, maxScrollExtent), viewportDimension);
 
 
-    print ("viewport.debugg get page called, returning $result");
+    print ("viewport.debug get page called, returning $result");
 
     return !hasPixels || !hasContentDimensions
       ? null
@@ -449,6 +449,9 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
 
   @override
   bool applyViewportDimension(double viewportDimension) {
+
+
+
     final double? oldViewportDimensions = hasViewportDimension ? this.viewportDimension : null;
     if (viewportDimension == oldViewportDimensions) {
       return true;
@@ -475,11 +478,13 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
     //_cachedPage = page;
 
     if (newPixels != oldPixels) {
+
+      print ("viewport.debug dimenstion applied $viewportDimension result=false, pixels");
       correctPixels(newPixels);
       return false;
     }
 
-    print ("viewport.debug dimenstion applied $viewportDimension result=$result");
+    print ("viewport.debug dimenstion applied $viewportDimension result=$result");    
 
     return result;
   }
