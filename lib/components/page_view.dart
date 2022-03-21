@@ -398,9 +398,14 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
       !hasPixels || hasContentDimensions,
       'Page value is only available after content dimensions are established.',
     );
+
+    double? _cp = _cachedPage;
+
+    _cachedPage = null;
+
     return !hasPixels || !hasContentDimensions
       ? null
-      : _cachedPage ?? getPageFromPixels(pixels.clamp(minScrollExtent, maxScrollExtent), viewportDimension);
+      : _cp ?? getPageFromPixels(pixels.clamp(minScrollExtent, maxScrollExtent), viewportDimension);
   }
 
   @override
@@ -943,8 +948,8 @@ class _PageViewModifiedState extends State<PageViewModified> {
           if (currentPage != _lastReportedPage) {
             _lastReportedPage = currentPage;
             widget.onPageChanged!(currentPage);
-            final _PagePositionModified postition = widget.controller.position as _PagePositionModified;
-            postition.clearCachedPage();
+            //final _PagePositionModified postition = widget.controller.position as _PagePositionModified;
+            //postition.clearCachedPage();
           }
         }
         return false;
