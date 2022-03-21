@@ -403,6 +403,14 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
 
     //_cachedPage = null;
 
+
+    double? result = !hasPixels || !hasContentDimensions
+      ? null
+      : _cp ?? getPageFromPixels(pixels.clamp(minScrollExtent, maxScrollExtent), viewportDimension);
+
+
+    print ("viewport.debugg get page called, returning $result");
+
     return !hasPixels || !hasContentDimensions
       ? null
       : _cp ?? getPageFromPixels(pixels.clamp(minScrollExtent, maxScrollExtent), viewportDimension);
@@ -462,7 +470,7 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
     // in case the viewport is resized to be non-zero.
     _cachedPage = (viewportDimension == 0.0) ? page : null;
 
-    jumpTo(page);
+    
 
     //_cachedPage = page;
 
@@ -470,6 +478,9 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
       correctPixels(newPixels);
       return false;
     }
+
+    print ("viewport.debug dimenstion applied $viewportDimension result=$result");
+
     return result;
   }
 
