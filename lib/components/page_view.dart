@@ -401,7 +401,7 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
 
     double? _cp = _cachedPage;
 
-    _cachedPage = null;
+    //_cachedPage = null;
 
     return !hasPixels || !hasContentDimensions
       ? null
@@ -425,6 +425,7 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
   @override
   void saveOffset() {
     context.saveOffset(_cachedPage ?? getPageFromPixels(pixels, viewportDimension));
+    clearCachedPage();
   }
 
   @override
