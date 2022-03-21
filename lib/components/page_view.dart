@@ -419,8 +419,8 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
     _prevPixelResult = result;
 
 
-    print ("viewport.debug get page called, returning _cp=$_cp, pixels=$pixels, minScrollExtent=$minScrollExtent, maxScrollExtent=$maxScrollExtent, viewportDimension=$viewportDimension");
-    print ("viewport.debug get page called, returning $result");
+    //print ("viewport.debug get page called, returning _cp=$_cp, pixels=$pixels, minScrollExtent=$minScrollExtent, maxScrollExtent=$maxScrollExtent, viewportDimension=$viewportDimension");
+    //print ("viewport.debug get page called, returning $result");
 
     return !hasPixels || !hasContentDimensions
       ? null
@@ -434,7 +434,7 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
 
   @override
   void restoreScrollOffset() {
-    print ("viewport.debug restoreScrollOffset called");
+    //print ("viewport.debug restoreScrollOffset called");
     if (!hasPixels) {
       final double? value = PageStorage.of(context.storageContext)?.readState(context.storageContext) as double?;
       if (value != null)
@@ -450,7 +450,7 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
 
   @override
   void restoreOffset(double offset, {bool initialRestore = false}) {
-    print ("viewport.debug restoreOffset called");
+    //print ("viewport.debug restoreOffset called");
     assert(initialRestore != null);
     assert(offset != null);
     if (initialRestore) {
@@ -492,12 +492,12 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
 
     if (newPixels != oldPixels) {
 
-      print ("viewport.debug dimenstion applied $viewportDimension result=false, pixels");
+      //print ("viewport.debug dimenstion applied $viewportDimension result=false, pixels");
       correctPixels(newPixels);
       return false;
     }
 
-    print ("viewport.debug dimenstion applied $viewportDimension result=$result");    
+    //print ("viewport.debug dimenstion applied $viewportDimension result=$result");    
 
     return result;
   }
