@@ -392,6 +392,8 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
     return page * viewportDimension * viewportFraction + _initialPageOffset;
   }
 
+  double ? _prevPixelResult;
+
   @override
   double? get page {
     assert(
@@ -403,10 +405,18 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
 
     //_cachedPage = null;
 
+    //This Is a potential BUG SOURCE. I did it to fix a problem I dont understand.
+
 
     double? result = !hasPixels || !hasContentDimensions
       ? null
       : _cp ?? getPageFromPixels(pixels.clamp(minScrollExtent, maxScrollExtent), viewportDimension);
+
+    if (pixels > maxScrollExtent){
+      result = _prevPixelResult ?? result;
+    }
+
+    _prevPixelResult = result;
 
 
     print ("viewport.debug get page called, returning _cp=$_cp, pixels=$pixels, minScrollExtent=$minScrollExtent, maxScrollExtent=$maxScrollExtent, viewportDimension=$viewportDimension");
@@ -414,7 +424,7 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
 
     return !hasPixels || !hasContentDimensions
       ? null
-      : _cp ?? getPageFromPixels(pixels.clamp(minScrollExtent, maxScrollExtent), viewportDimension);
+      : _cp ?? result;
   }
 
   @override
