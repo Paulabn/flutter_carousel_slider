@@ -456,7 +456,6 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
     // in case the viewport is resized to be non-zero.
     //_cachedPage = (viewportDimension == 0.0) ? page : null;
 
-    //Paul - try to cache the page anyway
     _cachedPage = page;
 
     if (newPixels != oldPixels) {
@@ -464,6 +463,10 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
       return false;
     }
     return result;
+  }
+
+  void clearCachedPage (){
+    _cachedPage = null;
   }
 
   @override
@@ -940,6 +943,8 @@ class _PageViewModifiedState extends State<PageViewModified> {
           if (currentPage != _lastReportedPage) {
             _lastReportedPage = currentPage;
             widget.onPageChanged!(currentPage);
+            final _PagePositionModified postition = widget.controller.position as _PagePositionModified;
+            postition.clearCachedPage();
           }
         }
         return false;
