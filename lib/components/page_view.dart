@@ -409,6 +409,7 @@ class _PagePositionModified extends ScrollPositionWithSingleContext implements P
       : _cp ?? getPageFromPixels(pixels.clamp(minScrollExtent, maxScrollExtent), viewportDimension);
 
 
+    print ("viewport.debug get page called, returning _cp=$_cp, pixels=$pixels, minScrollExtent=$minScrollExtent, maxScrollExtent=$maxScrollExtent, viewportDimension=$viewportDimension");
     print ("viewport.debug get page called, returning $result");
 
     return !hasPixels || !hasContentDimensions
