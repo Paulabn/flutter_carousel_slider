@@ -433,7 +433,7 @@ class ScrollableModifiedState extends State<ScrollableModified>
     _persistedScrollOffset.value = offset;
     // [saveOffset] is called after a scrolling ends and it is usually not
     // followed by a frame. Therefore, manually flush restoration data.
-    ServicesBinding.instance!.restorationManager.flushData();
+    ServicesBinding.instance.restorationManager.flushData();
   }
 
   @override
@@ -708,7 +708,7 @@ class ScrollableModifiedState extends State<ScrollableModified>
           _targetScrollOffsetForPointerScroll(delta);
       // Only express interest in the event if it would actually result in a scroll.
       if (delta != 0.0 && targetScrollOffset != position.pixels) {
-        GestureBinding.instance!.pointerSignalResolver
+        GestureBinding.instance.pointerSignalResolver
             .register(event, _handlePointerScroll);
       }
     }
